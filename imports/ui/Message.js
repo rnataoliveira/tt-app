@@ -9,8 +9,7 @@ export default class Message extends Component {
     render() {
         return (
             <div className="container">
-                <p>{this.props.text}</p>
-                <span>{this.props.author}</span>
+                <span><strong>{this.props.message.author}</strong>: {this.props.message.text}</span>
             </div>
         )
     }

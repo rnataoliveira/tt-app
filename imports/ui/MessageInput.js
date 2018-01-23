@@ -10,12 +10,10 @@ export default class MessageInput extends Component {
         this.handleSubmit = this.handleSubmit.bind(this)
     }
 
-    state = { text: ''}
-    state = { author: '' }
+    state = { text: '', author: 'José Teste'}
 
     handleChange(event) {
-        this.setState({ text: event.target.value} )
-        this.setState({ author: 'José Teste'})
+        this.setState({ text: event.target.value } )
     }
 
     handleSubmit(event) {
@@ -25,12 +23,10 @@ export default class MessageInput extends Component {
 
         Messages.insert({
             text,
-            author,
+            owner: Meteor.userId,
             createdAt: new Date(),
+            author: Meteor.user().username,
         });
-        
-        console.log(text)
-        console.log(author)
 
         this.setState({ text: '' })
     }
@@ -38,7 +34,8 @@ export default class MessageInput extends Component {
     render() {
         return (
             <div className="container">
-                <form className="" onSubmit={this.handleSubmit}>
+                { this.props.currentUser ?
+                    <form className="new-message" onSubmit={this.handleSubmit}>
                     <input 
                         type="text"
                         ref="textInput"
@@ -47,7 +44,8 @@ export default class MessageInput extends Component {
                         value={this.state.text}
                         onChange={this.handleChange}/>
                     <button id="send-btn" className="">Enviar</button>
-                </form>
+                </form> : ''   
+                }
             </div>
         )
     }

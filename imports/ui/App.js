@@ -6,6 +6,7 @@ import MessageContainer from './MessageContainer'
 import Message from './Message'
 
 import { Messages } from '../api/messages'
+import AccountUIWrapper from './AccountsUIWrapper'
 
 class App extends Component {
     constructor() {
@@ -18,6 +19,7 @@ class App extends Component {
                 <header>
                     <h1>TT App</h1>
                 </header>
+                <AccountUIWrapper />
                 <MessageInput />
                 <MessageContainer messages={this.props.messages}/>
             </div>
@@ -29,5 +31,6 @@ class App extends Component {
 export default withTracker(() => {
     return {
         messages: Messages.find({}, { sort: { createdAd: -1 } }).fetch(),
+        currentUser: Meteor.user(),
     };
 })(App)
