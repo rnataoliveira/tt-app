@@ -17,7 +17,7 @@ class App extends Component {
         return (
             <div className="container">
                 <header>
-                    <h1>TT App</h1>
+                    <h1>Messages App</h1>
                 </header>
                 <AccountUIWrapper />
                 <MessageInput />
@@ -30,7 +30,7 @@ class App extends Component {
 
 export default withTracker(() => {
     return {
-        messages: Messages.find({}, { sort: { createdAd: -1 } }).fetch(),
+        messages: Messages.find({}, { sort: { createdAt: -1 } }).fetch(),
         currentUser: Meteor.user(),
     };
 })(App)

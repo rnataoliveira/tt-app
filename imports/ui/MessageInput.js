@@ -6,8 +6,6 @@ import { Messages } from '../api/messages'
 export default class MessageInput extends Component {
     constructor() {
         super()
-        this.handleChange = this.handleChange.bind(this)
-        this.handleSubmit = this.handleSubmit.bind(this)
     }
 
     state = { text: '', author: 'José Teste'}
@@ -19,33 +17,32 @@ export default class MessageInput extends Component {
     handleSubmit(event) {
         event.preventDefault();
 
-        const text = event.target.value.trim()
+        const text = event.target.value
 
-        Messages.insert({
-            text,
-            owner: Meteor.userId,
-            createdAt: new Date(),
-            author: Meteor.user().username,
-        });
+        let self = this
 
-        this.setState({ text: '' })
+        // Calling the method from server side
+        Meteor.call('messages.insert', text, (error, success) => {
+            error ? console.log(error) : self.setState({ text: '' })
+        })
     }
 
     render() {
         return (
             <div className="container">
-                { this.props.currentUser ?
-                    <form className="new-message" onSubmit={this.handleSubmit}>
+                {/* { this.props.currentUser ? */}
+                    <form className="new-message" onSubmit={this.handleSubmit.bind(this)}>
                     <input 
                         type="text"
                         ref="textInput"
                         placeholder="Digite sua mensagem aqui"
                         maxLength="140"
                         value={this.state.text}
-                        onChange={this.handleChange}/>
+                        onChange={this.handleChange.bind(this)}/>
                     <button id="send-btn" className="">Enviar</button>
-                </form> : ''   
-                }
+                </form>
+                 {/* : ''   
+                } */}
             </div>
         )
     }
