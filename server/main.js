@@ -9,10 +9,10 @@ Meteor.startup(() => {
 
 Meteor.methods ({
   'messages.insert': function (text) {
-    // check(text, String);
-    // if (! this.userId) {
-    //   throw new Meteor.Error('not-authorized');
-    // }
+    check(text, String);
+    if (! this.userId) {
+      throw new Meteor.Error('not-authorized');
+    }
     Messages.insert({
       text,
       owner: this.userId,
