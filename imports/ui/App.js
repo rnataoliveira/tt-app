@@ -29,6 +29,8 @@ class App extends Component {
 
 
 export default withTracker(() => {
+    Meteor.subscribe('messages')
+
     return {
         messages: Messages.find({}, { sort: { createdAt: -1 } }).fetch(),
         currentUser: Meteor.user(),
