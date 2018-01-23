@@ -1,37 +1,51 @@
 import React, { Component } from 'react'
 import { Meteor } from 'meteor/meteor'
 
-class MessageInput extends Component {
+import { Messages } from '../api/messages'
+
+export default class MessageInput extends Component {
     constructor() {
         super()
+        this.handleChange = this.handleChange.bind(this)
+        this.handleSubmit = this.handleSubmit.bind(this)
+    }
+
+    state = { text: ''}
+    state = { author: '' }
+
+    handleChange(event) {
+        this.setState({ text: event.target.value} )
+        this.setState({ author: 'José Teste'})
     }
 
     handleSubmit(event) {
         event.preventDefault();
 
-        // Find the text field via the react ref
-        const text = ReactDOM.findDOMNode(this.refs.textInput).value.trim();
+        const text = event.target.value.trim()
 
-        // Insert the text, author and the time, so we can order
         Messages.insert({
             text,
             author,
             createdAt: new Date(),
         });
         
-        // Clear the form
-        ReactDOM.findDOMNode(this.refs.textInput).value = '';
+        console.log(text)
+        console.log(author)
+
+        this.setState({ text: '' })
     }
 
     render() {
         return (
             <div className="container">
-                <form className="" onSubmit={this.handleSubmit.bind(this)}>
+                <form className="" onSubmit={this.handleSubmit}>
                     <input 
                         type="text"
                         ref="textInput"
                         placeholder="Digite sua mensagem aqui"
-                        maxLength="140"/>
+                        maxLength="140"
+                        value={this.state.text}
+                        onChange={this.handleChange}/>
                     <button id="send-btn" className="">Enviar</button>
                 </form>
             </div>

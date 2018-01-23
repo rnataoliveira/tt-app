@@ -19,7 +19,7 @@ class App extends Component {
                     <h1>TT App</h1>
                 </header>
                 <MessageInput />
-                <MessageContainer />
+                <MessageContainer messages={this.props.messages}/>
             </div>
         )
     }
@@ -28,6 +28,6 @@ class App extends Component {
 
 export default withTracker(() => {
     return {
-        messages: Messages.find({}).fetch(),
+        messages: Messages.find({}, { sort: { createdAd: -1 } }).fetch(),
     };
 })(App)
