@@ -8,25 +8,16 @@ import Message from './Message'
 import { Messages } from '../api/messages'
 import AccountUIWrapper from './AccountsUIWrapper'
 
-class App extends Component {
-    constructor() {
-        super()
-    }
-
-    render() {
-        return (
-            <div className="container">
-                <header>
-                    <h1>Messages App</h1>
-                </header>
-                <AccountUIWrapper />
-                <MessageInput currentUser={this.props.currentUser} />
-                <MessageContainer messages={this.props.messages}/>
-            </div>
-        )
-    }
-}
-
+const App = (props) => (
+    <div className="container">
+        <header>
+            <h1>Messages App</h1>
+        </header>
+        <AccountUIWrapper />
+        <MessageInput currentUser={props.currentUser} />
+        <MessageContainer messages={props.messages}/>
+    </div>
+)
 
 export default withTracker(() => {
     Meteor.subscribe('messages')

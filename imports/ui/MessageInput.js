@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
 import { Meteor } from 'meteor/meteor'
+import PropTypes from 'prop-types'
 
 import { Messages } from '../api/messages'
 
-export default class MessageInput extends Component {
-    constructor() {
-        super()
+class MessageInput extends Component {
+    constructor(props) {
+        super(props)
     }
 
     state = { text: '', author: 'José Teste'}
@@ -45,3 +46,9 @@ export default class MessageInput extends Component {
         )
     }
 }
+
+MessageInput.propTypes = {
+    currentUser: PropTypes.object
+}
+
+export default MessageInput

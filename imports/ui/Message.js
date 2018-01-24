@@ -1,16 +1,17 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { Meteor } from 'meteor/meteor'
 
-export default class Message extends Component {
-    constructor(props) {
-        super(props)
-    }
+// Instead of using props.author or props.text ...
+const Message = ({ author, text }) => (
+    <div className="container">
+        <span><strong>{author}</strong>: {text}</span>
+    </div>
+)
 
-    render() {
-        return (
-            <div className="container">
-                <span><strong>{this.props.author}</strong>: {this.props.text}</span>
-            </div>
-        )
-    }
+Message.propTypes = {
+    text: PropTypes.string.isRequired,
+    author: PropTypes.string.isRequired
 }
+
+export default Message
