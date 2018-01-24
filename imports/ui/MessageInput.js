@@ -17,7 +17,7 @@ export default class MessageInput extends Component {
     handleSubmit(event) {
         event.preventDefault();
 
-        const text = event.target.value
+        const { text } = this.state
 
         let self = this
 
@@ -30,7 +30,7 @@ export default class MessageInput extends Component {
     render() {
         return (
             <div className="container">
-                {/* { this.props.currentUser ? */}
+                { this.props.currentUser ?
                     <form className="new-message" onSubmit={this.handleSubmit.bind(this)}>
                     <input 
                         type="text"
@@ -40,9 +40,7 @@ export default class MessageInput extends Component {
                         value={this.state.text}
                         onChange={this.handleChange.bind(this)}/>
                     <button id="send-btn" className="">Enviar</button>
-                </form>
-                 {/* : ''   
-                } */}
+                </form> : '' } 
             </div>
         )
     }

@@ -20,7 +20,7 @@ class App extends Component {
                     <h1>Messages App</h1>
                 </header>
                 <AccountUIWrapper />
-                <MessageInput />
+                <MessageInput currentUser={this.props.currentUser} />
                 <MessageContainer messages={this.props.messages}/>
             </div>
         )
