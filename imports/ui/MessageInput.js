@@ -32,14 +32,14 @@ class MessageInput extends Component {
         return (
             <div className="container">
                 { this.props.currentUser ?
-                    <form className="new-message" onSubmit={this.handleSubmit.bind(this)}>
-                    <input 
+                    <form className="form-message" onSubmit={this.handleSubmit.bind(this)}>
+                    <textarea className="textarea-message"
                         type="text"
                         ref="textInput"
                         placeholder="Digite sua mensagem aqui"
                         maxLength="140"
                         value={this.state.text}
-                        onChange={this.handleChange.bind(this)}/>
+                        onChange={this.handleChange.bind(this)}></textarea>
                     <button id="send-btn" className="">Enviar</button>
                 </form> : '' } 
             </div>

@@ -1,6 +1,6 @@
 /* CSS declarations go here */
 body {
-    background: #b5b5b5;
+    background: #FEFEFE;
 }
 
 .container {
@@ -10,6 +10,31 @@ body {
 }
 
 h1 {
-    color: #e5840b;
-    margin-top: 10px;
+    color: #3598CC;
+    font-weight: bold;
+    margin-top: 50px;
+    margin-left: 250px;
+}
+
+.textarea-message {
+    border-radius: 0.2em;
+    height: 100px;
+    margin-left: 100px;
+    width: 600px;
+}
+
+#send-btn {
+    background-color: #3598CC;
+    border: 0;
+    border-radius: 0.2em;
+    color: #ffffff;
+    float: left;
+    height: 40px;
+    margin: 0 auto;
+    margin-left: 100px;
+    width: 100px;  
+}
+
+.message-container {
+    margin: 10px 100px;
 }

@@ -11,9 +11,10 @@ import Message from './Message'
 //         />)
 //     }
 // }
-
 const MessageContainer = (props) => (props.messages.map(message => 
-    <Message key={message._id} text={message.text} author={message.author} />
+    <div className="message-container">
+        <Message key={message._id} text={message.text} author={message.author} />
+    </div>
 ))
 
 MessageContainer.propTypes = {
